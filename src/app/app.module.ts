@@ -11,12 +11,22 @@ import {UserComponent} from './users/user/user.component';
 import {EditServerComponent} from './servers/edit-server/edit-server.component';
 import {ServerComponent} from './servers/server/server.component';
 import {ServersService} from './servers/servers.service';
-import {Route, RouterModule, Routes} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 
 const routes: Routes = [
-  {path: 'user', component: UsersComponent},
-  {path: 'user/:id/:name', component: UserComponent},
-  {path: 'server', component: ServersComponent},
+  {
+    path: 'user', component: UsersComponent, children: [
+    {path: ':id/:name', component: UserComponent}
+  ]
+  },
+
+  {
+    path: 'server', component: ServersComponent, children: [
+    {path: ':id/edit', component: EditServerComponent},
+    {path: ':id', component: ServerComponent}
+  ]
+  },
+
   {path: '', component: HomeComponent}
 ];
 

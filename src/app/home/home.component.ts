@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
-  openServerPage() {
-    this.mrouter.navigate(['/user']);
+  openServerPage(id:number) {
+    this.mrouter.navigate(['/server',id,'edit'],{queryParams:{isGod:'1'},fragment:'LOADING'});
   }
 }
